@@ -1,10 +1,15 @@
 name: Build JUCE Audio Plugin
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ main, master, action ]
+    branches: [ main ]
   pull_request:
-    branches: [ main, master ]
+    branches: [ main ]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
